@@ -20,7 +20,7 @@
             icon="close"
             @click="toggleNav"
           />
-          <span class="side-nav-header-name">Kolibri</span>
+          <span class="side-nav-header-name">Instant Schools</span>
         </div>
 
         <div
@@ -36,6 +36,14 @@
             @select="navigate"
           />
 
+          <div class="side-nav-scrollable-area-footer">
+            <img class="side-nav-scrollable-area-footer-logo" src="../img/instant-school-logo.png">
+            <div class="side-nav-scrollable-area-footer-info">
+              <!-- Not translated -->
+              <p>Instant Schools</p>
+              <p>© 2017 Vodafone Foundation</p>
+            </div>
+          </div>
           <div class="side-nav-scrollable-area-footer">
             <logo class="side-nav-scrollable-area-footer-logo"/>
             <div class="side-nav-scrollable-area-footer-info">
@@ -296,7 +304,7 @@
     vertical-align: middle
     color: $core-bg-light
     font-weight: bold
-    font-size: 18px
+    font-size: 16px
 
   .side-nav-scrollable-area
     position: fixed
