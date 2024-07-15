@@ -1,6 +1,6 @@
 <template>
 
-  <CoreBase
+  <AppBarPage
     :immersivePage="pageName === PageNames.SIGN_UP"
     immersivePagePrimary
     :immersivePageRoute="{ name: PageNames.SIGN_IN }"
@@ -8,7 +8,7 @@
     :fullScreen="pageName === PageNames.SIGN_IN"
   >
     <component :is="currentPage" />
-  </CoreBase>
+  </AppBarPage>
 
 </template>
 
@@ -16,7 +16,7 @@
 <script>
 
   import { mapState } from 'vuex';
-  import CoreBase from 'kolibri.coreVue.components.CoreBase';
+  import AppBarPage from 'kolibri.coreVue.components.AppBarPage';
   import { crossComponentTranslator } from 'kolibri.utils.i18n';
   import { PageNames } from '../constants';
   import SignInPage from './SignInPage';
@@ -38,7 +38,7 @@
   export default {
     name: 'UserIndex',
     components: {
-      CoreBase,
+      AppBarPage,
     },
     computed: {
       ...mapState(['pageName']),

@@ -3,6 +3,7 @@
   <KPageContainer class="content">
     <section>
       <h2>{{ $tr('points') }}</h2>
+      <KIcon icon="pointsActive" :color="$themeTokens.primary" />
       <PointsIcon class="points-icon" />
       <span class="points-num" :style="{ color: $themeTokens.correct }">
         {{ $formatNumber(totalPoints) }}
@@ -96,14 +97,12 @@
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
   import pickBy from 'lodash/pickBy';
   import { validateUsername } from 'kolibri.utils.validators';
-  import PointsIcon from 'kolibri.coreVue.components.PointsIcon';
   import PermissionsIcon from 'kolibri.coreVue.components.PermissionsIcon';
   import UserTypeDisplay from 'kolibri.coreVue.components.UserTypeDisplay';
-  import UiAlert from 'keen-ui/src/UiAlert';
+  import UiAlert from 'kolibri-design-system/lib/keen/UiAlert';
   import { PermissionTypes, ERROR_CONSTANTS } from 'kolibri.coreVue.vuex.constants';
   import SignUpPage from '../SignUpPage';
   import ChangeUserPasswordModal from './ChangeUserPasswordModal';
-  import responsiveWindowMixin from 'kolibri.coreVue.mixins.responsiveWindowMixin';
 
   const SignUpPageStrings = crossComponentTranslator(SignUpPage);
 
@@ -116,7 +115,6 @@
     },
     components: {
       UiAlert,
-      PointsIcon,
       PermissionsIcon,
       ChangeUserPasswordModal,
       UserTypeDisplay,

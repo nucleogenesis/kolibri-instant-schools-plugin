@@ -217,7 +217,7 @@
   import { validateUsername } from 'kolibri.utils.validators';
   // import UiAutocompleteSuggestion from 'keen-ui/src/UiAutocompleteSuggestion';
   import PrivacyInfoModal from 'kolibri.coreVue.components.PrivacyInfoModal';
-  import UiAlert from 'keen-ui/src/UiAlert';
+  import UiAlert from 'kolibri-design-system/lib/keen/UiAlert';
   import urls from 'kolibri.urls';
   import { crossComponentTranslator } from 'kolibri.utils.i18n';
   import { PageNames } from '../../constants';
@@ -225,7 +225,6 @@
   import getUrlParameter from '../getUrlParameter';
   import FacilityModal from './FacilityModal';
   import ResetPasswordModal from './ResetPasswordModal';
-  import responsiveWindowMixin from 'kolibri.coreVue.mixins.responsiveWindowMixin';
   import themeConfig from 'kolibri.themeConfig';
 
   const closeString = crossComponentTranslator(FacilityModal).$tr('close');
@@ -357,7 +356,7 @@
             backgroundImage: `linear-gradient(rgba(0, 0, 0, ${scrimOpacity}), rgba(0, 0, 0, ${scrimOpacity})), url(${this.theme.signIn.background})`,
           };
         }
-        return { backgroundColor: this.$themePalette.brand.primary.v_900 };
+        return { backgroundColor: this.$themeBrand.primary.v_900 };
       },
       oidcProviderFlow() {
         return global.oidcProviderEnabled && this.nextParam;

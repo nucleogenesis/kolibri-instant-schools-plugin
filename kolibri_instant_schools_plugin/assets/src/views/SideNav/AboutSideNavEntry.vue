@@ -20,7 +20,7 @@
 
   import { NavComponentSections } from 'kolibri.coreVue.vuex.constants';
   import CoreMenuOption from 'kolibri.coreVue.components.CoreMenuOption';
-  import navComponents from 'kolibri.utils.navComponents';
+  import registerNavItem from 'kolibri.utils.registerNavItem';
   import urls from 'kolibri.urls';
 
   const component = {
@@ -40,7 +40,7 @@
     section: NavComponentSections.ACCOUNT,
   };
 
-  navComponents.register(component);
+  registerNavItem(component);
 
   export default component;
 

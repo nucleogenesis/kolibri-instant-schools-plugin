@@ -1,6 +1,6 @@
 import os
 from twilio.rest import Client
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 import logging as logger
 
 from ..auth.mapping import normalize_phone_number

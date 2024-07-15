@@ -52,7 +52,7 @@
 
 <script>
 
-  import UiAlert from 'keen-ui/src/UiAlert';
+  import UiAlert from 'kolibri-design-system/lib/keen/UiAlert';
   import plugin_data from 'plugin_data';
   import { countryCodesAndPrefixes } from './country_phone_prefixes.js';
 

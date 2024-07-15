@@ -1,13 +1,13 @@
 <template>
 
-  <CoreBase
+  <AppBarPage
     :navBarNeeded="true"
     :appBarTitle="appBarTitle"
   >
     <component
       :is="currentPage"
     />
-  </CoreBase>
+  </AppBarPage>
 
 </template>
 
@@ -15,7 +15,7 @@
 <script>
 
   import { mapState } from 'vuex';
-  import CoreBase from 'kolibri.coreVue.components.CoreBase';
+  import AppBarPage from 'kolibri.coreVue.components.AppBarPage';
   import { PageNames } from '../../constants';
   import AboutPage from './AboutPage';
   import FAQPage from './FAQPage';
@@ -29,7 +29,7 @@
     $trs: { aboutTitle: 'About' },
     name: 'About',
     components: {
-      CoreBase,
+      AppBarPage,
       AboutPage,
       FAQPage,
     },

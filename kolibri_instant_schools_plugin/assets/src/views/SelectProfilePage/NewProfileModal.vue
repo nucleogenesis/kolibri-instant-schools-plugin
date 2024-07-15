@@ -49,7 +49,7 @@
 <script>
 
   import { mapState } from 'vuex';
-  import UiAlert from 'keen-ui/src/UiAlert';
+  import UiAlert from 'kolibri-design-system/lib/keen/UiAlert';
 
   export default {
     name: 'NewProfileModal',

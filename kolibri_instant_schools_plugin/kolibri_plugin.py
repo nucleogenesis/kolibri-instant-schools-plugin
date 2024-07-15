@@ -11,7 +11,7 @@ from kolibri.core.webpack import hooks as webpack_hooks
 from kolibri.plugins import KolibriPluginBase
 from kolibri.plugins.hooks import register_hook
 from kolibri.core import theme_hook
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 
 APP_TITLE = getenv("INSTANT_SCHOOLS_APP_TITLE") or "Instant Schools"
 
@@ -83,6 +83,8 @@ class DefaultThemeHook(theme_hook.ThemeHook):
                     "v_700": "#ef2005",
                     "v_800": "#e11300",
                     "v_900": "#c90000",
+                    "v_1000": "#c90000",
+                    "v_1100": "#c90000",
                 },
                 "secondary": {
                     "v_50": "#f7f7f7",
@@ -95,6 +97,8 @@ class DefaultThemeHook(theme_hook.ThemeHook):
                     "v_700": "#515151",
                     "v_800": "#333333",
                     "v_900": "#131313",
+                    "v_1000": "#131313",
+                    "v_1100": "#131313",
                 },
             },
             "tokenMapping": {
