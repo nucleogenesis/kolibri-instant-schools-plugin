@@ -1,14 +1,6 @@
 <template>
 
-  <AppBarPage
-    :immersivePage="pageName === PageNames.SIGN_UP"
-    immersivePagePrimary
-    :immersivePageRoute="{ name: PageNames.SIGN_IN }"
-    :appBarTitle="appBarTitle"
-    :fullScreen="pageName === PageNames.SIGN_IN"
-  >
-    <component :is="currentPage" />
-  </AppBarPage>
+  <component :is="currentPage" :title="appBarTitle" />
 
 </template>
 

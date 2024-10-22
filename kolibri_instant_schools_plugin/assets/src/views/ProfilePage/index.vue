@@ -1,92 +1,96 @@
 <template>
 
-  <KPageContainer class="content">
-    <section>
-      <h2>{{ $tr('points') }}</h2>
-      <KIcon icon="pointsActive" :color="$themeTokens.primary" />
-      <PointsIcon class="points-icon" />
-      <span class="points-num" :style="{ color: $themeTokens.correct }">
-        {{ $formatNumber(totalPoints) }}
-      </span>
-    </section>
+  <AppBarPage
+    :appBarTitle="title"
+  >
+    <KPageContainer class="content">
+      <section>
+        <h2>{{ $tr('points') }}</h2>
+        <KIcon icon="pointsActive" :color="$themeTokens.primary" />
+        <PointsIcon class="points-icon" />
+        <span class="points-num" :style="{ color: $themeTokens.correct }">
+          {{ $formatNumber(totalPoints) }}
+        </span>
+      </section>
 
-    <section>
-      <h2>{{ $tr('userType') }}</h2>
-      <UserTypeDisplay :distinguishCoachTypes="false" :userType="getUserKind" />
-    </section>
+      <section>
+        <h2>{{ $tr('userType') }}</h2>
+        <UserTypeDisplay :distinguishCoachTypes="false" :userType="getUserKind" />
+      </section>
 
-    <section v-if="userHasPermissions">
-      <h2>{{ $tr('devicePermissions') }}</h2>
-      <p>
-        <KLabeledIcon>
-          <PermissionsIcon slot="icon" :permissionType="permissionType" class="permissions-icon" />
-          {{ permissionTypeText }}
-        </KLabeledIcon>
-      </p>
-      <p>
-        {{ $tr('youCan') }}
-        <ul class="permissions-list">
-          <li v-if="isSuperuser">
-            {{ $tr('manageDevicePermissions') }}
-          </li>
-          <li v-for="(value, key) in userPermissions" :key="key">
-            {{ getPermissionString(key) }}
-          </li>
-        </ul>
-      </p>
-    </section>
+      <section v-if="userHasPermissions">
+        <h2>{{ $tr('devicePermissions') }}</h2>
+        <p>
+          <KLabeledIcon>
+            <PermissionsIcon slot="icon" :permissionType="permissionType" class="permissions-icon" />
+            {{ permissionTypeText }}
+          </KLabeledIcon>
+        </p>
+        <p>
+          {{ $tr('youCan') }}
+          <ul class="permissions-list">
+            <li v-if="isSuperuser">
+              {{ $tr('manageDevicePermissions') }}
+            </li>
+            <li v-for="(value, key) in userPermissions" :key="key">
+              {{ getPermissionString(key) }}
+            </li>
+          </ul>
+        </p>
+      </section>
 
-    <form @submit.prevent="submitEdits">
-      <UiAlert
-        v-if="success"
-        type="success"
-        :dismissible="false"
-      >
-        {{ $tr('success') }}
-      </UiAlert>
+      <form @submit.prevent="submitEdits">
+        <UiAlert
+          v-if="success"
+          type="success"
+          :dismissible="false"
+        >
+          {{ $tr('success') }}
+        </UiAlert>
 
-      <KTextbox
-        v-if="canEditName"
-        ref="name"
-        v-model="name"
-        type="text"
-        autocomplete="name"
-        :autofocus="false"
-        :label="$tr('name')"
-        :disabled="busy"
-        :maxlength="120"
-        :invalid="nameIsInvalid"
-        :invalidText="nameIsInvalidText"
-      />
-      <template v-else>
-        <h2>{{ $tr('name') }}</h2>
-        <p>{{ name }}</p>
-      </template>
+        <KTextbox
+          v-if="canEditName"
+          ref="name"
+          v-model="name"
+          type="text"
+          autocomplete="name"
+          :autofocus="false"
+          :label="$tr('name')"
+          :disabled="busy"
+          :maxlength="120"
+          :invalid="nameIsInvalid"
+          :invalidText="nameIsInvalidText"
+        />
+        <template v-else>
+          <h2>{{ $tr('name') }}</h2>
+          <p>{{ name }}</p>
+        </template>
+
+        <KButton
+          v-if="canEditName"
+          type="submit"
+          class="submit"
+          :text="$tr('updateProfile')"
+          :primary="true"
+          :disabled="busy"
+        />
+      </form>
 
       <KButton
-        v-if="canEditName"
-        type="submit"
-        class="submit"
-        :text="$tr('updateProfile')"
-        :primary="true"
+        v-if="canEditPassword"
+        appearance="basic-link"
+        :text="$tr('changePasswordPrompt')"
         :disabled="busy"
+        class="change-password"
+        @click="setPasswordModalVisible(true)"
       />
-    </form>
 
-    <KButton
-      v-if="canEditPassword"
-      appearance="basic-link"
-      :text="$tr('changePasswordPrompt')"
-      :disabled="busy"
-      class="change-password"
-      @click="setPasswordModalVisible(true)"
-    />
-
-    <ChangeUserPasswordModal
-      v-if="passwordModalVisible"
-      @cancel="setPasswordModalVisible(false)"
-    />
-  </KPageContainer>
+      <ChangeUserPasswordModal
+        v-if="passwordModalVisible"
+        @cancel="setPasswordModalVisible(false)"
+      />
+    </KPageContainer>
+  </AppBarPage>
 
 </template>
 
@@ -99,6 +103,7 @@
   import { validateUsername } from 'kolibri.utils.validators';
   import PermissionsIcon from 'kolibri.coreVue.components.PermissionsIcon';
   import UserTypeDisplay from 'kolibri.coreVue.components.UserTypeDisplay';
+  import AppBarPage from 'kolibri.coreVue.components.AppBarPage';
   import UiAlert from 'kolibri-design-system/lib/keen/UiAlert';
   import { PermissionTypes, ERROR_CONSTANTS } from 'kolibri.coreVue.vuex.constants';
   import SignUpPage from '../SignUpPage';
@@ -114,12 +119,18 @@
       };
     },
     components: {
+      AppBarPage,
       UiAlert,
       PermissionsIcon,
       ChangeUserPasswordModal,
       UserTypeDisplay,
     },
-    mixins: [responsiveWindowMixin],
+    props: {
+      title: {
+        type: String,
+        required: true,
+      },
+    },
     data() {
       const { username, full_name } = this.$store.state.core.session;
       return {

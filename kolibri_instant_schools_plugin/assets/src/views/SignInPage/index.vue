@@ -212,7 +212,6 @@
 
   import { mapState, mapGetters, mapActions } from 'vuex';
   import { FacilityUsernameResource } from 'kolibri.resources';
-  import { LoginErrors } from 'kolibri.coreVue.vuex.constants';
   import CoreLogo from 'kolibri.coreVue.components.CoreLogo';
   import { validateUsername } from 'kolibri.utils.validators';
   // import UiAutocompleteSuggestion from 'keen-ui/src/UiAutocompleteSuggestion';
@@ -245,7 +244,6 @@
       PrivacyInfoModal,
       ResetPasswordModal,
     },
-    mixins: [responsiveWindowMixin],
     data() {
       return {
         username: '',
@@ -562,7 +560,7 @@
   @import '~kolibri-design-system/lib/styles/definitions';
 
   .fh {
-    height: 100%;
+    height: 100vh;
   }
 
   .wrapper-table {
