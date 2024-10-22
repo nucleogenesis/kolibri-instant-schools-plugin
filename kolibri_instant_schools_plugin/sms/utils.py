@@ -1,5 +1,6 @@
 import os
 from twilio.rest import Client
+from django.conf import settings
 from django.urls import reverse
 import logging as logger
 
@@ -26,7 +27,7 @@ for name, value in required_env_vars:
         env_var_errors = True
         logging.error("{} is not set".format(name))
 
-if env_var_errors:
+if env_var_errors and not settings.DEBUG:
     class ConfigurationError(Exception):
         pass
     raise ConfigurationError("Twilio is not configured properly. The service will not start until this is resolved.")
