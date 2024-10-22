@@ -1,14 +1,11 @@
 <template>
 
-  <AppBarPage
-    :immersivePage="pageName === PageNames.SIGN_UP"
-    immersivePagePrimary
-    :immersivePageRoute="{ name: PageNames.SIGN_IN }"
-    :appBarTitle="appBarTitle"
-    :fullScreen="pageName === PageNames.SIGN_IN"
+  <component
+    :is="pageName === PageNames.SIGN_IN ? 'div' : 'ImmersivePage'"
+    :route="{ name: PageNames.SIGN_IN }"
   >
     <component :is="currentPage" />
-  </AppBarPage>
+  </component>
 
 </template>
 
@@ -16,7 +13,8 @@
 <script>
 
   import { mapState } from 'vuex';
-  import AppBarPage from 'kolibri.coreVue.components.AppBarPage';
+  import ImmersivePage from 'kolibri.coreVue.components.ImmersivePage';
+
   import { crossComponentTranslator } from 'kolibri.utils.i18n';
   import { PageNames } from '../constants';
   import SignInPage from './SignInPage';
@@ -38,10 +36,11 @@
   export default {
     name: 'UserIndex',
     components: {
-      AppBarPage,
+      ImmersivePage,
     },
     computed: {
       ...mapState(['pageName']),
+      /*
       appBarTitle() {
         if (this.pageName === PageNames.PROFILE) {
           return this.$tr('userProfileTitle');
@@ -52,6 +51,7 @@
         }
         return this.$tr('userSignInTitle');
       },
+      */
       currentPage() {
         return pageNameComponentMap[this.pageName] || null;
       },
@@ -69,4 +69,8 @@
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  /deep/ .ui-toolbar .link svg {
+    fill: white!important;
+  }
+</style>

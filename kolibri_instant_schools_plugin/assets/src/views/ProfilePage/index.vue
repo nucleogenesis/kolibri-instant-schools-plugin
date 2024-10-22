@@ -119,7 +119,6 @@
       ChangeUserPasswordModal,
       UserTypeDisplay,
     },
-    mixins: [responsiveWindowMixin],
     data() {
       const { username, full_name } = this.$store.state.core.session;
       return {

@@ -158,7 +158,7 @@
       ...mapGetters(['facilities']),
       ...mapState('signUp', ['errors', 'busy']),
       currentFacility() {
-        return this.$store.getters.currentFacilityId;
+        return this.$store.getters.facilities[0].id;
       },
       nameIsInvalidText() {
         if (this.nameBlurred || this.formSubmitted) {
@@ -252,6 +252,8 @@
         resetSignUpState: 'RESET_STATE',
       }),
       signUp() {
+        console.log(this.currentFacility);
+        console.log(this.$store);
         this.formSubmitted = true;
         const canSubmit = this.formIsValid && !this.busy;
         if (canSubmit) {

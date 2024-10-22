@@ -20,6 +20,7 @@
 
   import { NavComponentSections } from 'kolibri.coreVue.vuex.constants';
   import CoreMenuOption from 'kolibri.coreVue.components.CoreMenuOption';
+  import { crossComponentTranslator } from 'kolibri.utils.i18n';
   import registerNavItem from 'kolibri.utils.registerNavItem';
   import urls from 'kolibri.urls';
 
@@ -31,14 +32,14 @@
     $trs: {
       about: 'About',
     },
-    computed: {
-      url() {
-        return urls['kolibri:kolibri_instant_schools_plugin:instant_schools_about']();
-      },
-    },
     priority: 10,
+    url: urls['kolibri:kolibri_instant_schools_plugin:instant_schools_about'](),
     section: NavComponentSections.ACCOUNT,
+    icon: 'info',
   };
+
+  const translator = crossComponentTranslator(component);
+  component.label = translator.$tr('about');
 
   registerNavItem(component);
 

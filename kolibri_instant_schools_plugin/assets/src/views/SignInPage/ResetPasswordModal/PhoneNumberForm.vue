@@ -72,6 +72,7 @@
     return acc;
   }, {})
 
+  console.log(countryCodesAndPrefixes);
   const CURRENT_COUNTRY_PREFIX = countryCodesAndPrefixes.find(o => o.code == plugin_data["COUNTRY_CODE"]).dial_code;
 
   // Sorted so that all of the OPCO codes sort to the top

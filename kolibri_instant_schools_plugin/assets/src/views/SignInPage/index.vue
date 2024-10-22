@@ -245,7 +245,6 @@
       PrivacyInfoModal,
       ResetPasswordModal,
     },
-    mixins: [responsiveWindowMixin],
     data() {
       return {
         username: '',
