@@ -20,7 +20,7 @@
     "test-jest": "kolibri-tools test --config ./jest.conf.js"
   },
   "devDependencies": {
-    "kolibri-tools": "^0.16.1-dev.1",
+    "kolibri-tools": "^0.17.0-dev.4",
     "yarn-run-all": "^3.1.1"
   },
   "engines": {
@@ -29,5 +29,10 @@
   },
   "browserslist": [
     "extends browserslist-config-kolibri"
-  ]
+  ],
+  "dependencies": {
+    "kolibri-design-system": "4.6",
+    "lockr": "0.8.5",
+    "vuex-router-sync": "^5.0.0"
+  }
 }
